@@ -6,10 +6,6 @@
 Google's reCAPTCHA Golang implementation.
 
 # Usage
-package main
-
-import 
-
 ``` go
 package main
 
