@@ -1,5 +1,6 @@
 [![GoDoc](https://godoc.org/github.com/romanyx/recaptcha?status.svg)](https://godoc.org/github.com/romanyx/recaptcha)
 [![Build Status](https://travis-ci.org/romanyx/recaptcha.png)](https://travis-ci.org/romanyx/recaptcha)
+[![Go Report Card](https://goreportcard.com/badge/github.com/romanyx/recaptcha)](https://goreportcard.com/report/github.com/romanyx/recaptcha)
 
 # recaptcha
 
