@@ -1,4 +1,4 @@
-[![GoDoc](https://godoc.org/github.com/romanyx/recaptcha?status.svg)](https://godoc.org/github.com/romanyx/recaptcha)
+[![GoDoc](https://godoc.org/gopkg.in/romanyx/recaptcha.v1?status.svg)](https://godoc.org/gopkg.in/romanyx/recaptcha.v1)
 [![Build Status](https://travis-ci.org/romanyx/recaptcha.png)](https://travis-ci.org/romanyx/recaptcha)
 [![Go Report Card](https://goreportcard.com/badge/github.com/romanyx/recaptcha)](https://goreportcard.com/report/github.com/romanyx/recaptcha)
 
@@ -6,14 +6,32 @@
 
 Google's reCAPTCHA Golang implementation.
 
-# Usage
+# Install
+
+To get the package, execute:
+
+```bash
+go get gopkg.in/romanyx/recaptcha.v1
+```
+
+To import this package, add the following line to your code:
+
+```bash
+import "gopkg.in/romanyx/recaptcha.v1"
+```
+
+Refer to it as `recaptcha`.
+
+For more details, see the API documentation.
+
+# Example
 ``` go
 package main
 
 import (
 	"fmt"
 
-	"github.com/romanyx/recaptcha"
+	import "gopkg.in/romanyx/recaptcha.v1"
 )
 
 func main() {
@@ -45,3 +63,7 @@ func main() {
 	}
 }
 ```
+
+# Contributing
+
+Please feel free to submit issues, fork the repository and send pull requests!
