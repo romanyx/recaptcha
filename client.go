@@ -18,6 +18,14 @@ const (
 // Option for initializer.
 type Option func(*Client)
 
+// SetHTTPClient sets httpClient.
+// Used in tests for stubing.
+func SetHTTPClient(httpClient *http.Client) Option {
+	return func(cli *Client) {
+		cli.httpClient = httpClient
+	}
+}
+
 // SetTimeout sets timeout for the http client.
 func SetTimeout(timeout time.Duration) Option {
 	return func(cli *Client) {
