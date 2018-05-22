@@ -137,7 +137,7 @@ func TestClient_verify(t *testing.T) {
 			defer server.Close()
 			httpClient := testingHTTPClient(server)
 
-			cli := New(secret, setHTTPClient(httpClient))
+			cli := New(secret, SetHTTPClient(httpClient))
 			var remoteIP *string
 			if tt.args.remoteIP != "" {
 				remoteIP = &tt.args.remoteIP

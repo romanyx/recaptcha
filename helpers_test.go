@@ -9,12 +9,6 @@ import (
 	"strings"
 )
 
-func setHTTPClient(httpClient *http.Client) Option {
-	return func(cli *Client) {
-		cli.httpClient = httpClient
-	}
-}
-
 func createFakeServer(h http.Handler) *httptest.Server {
 	server := httptest.NewTLSServer(h)
 
