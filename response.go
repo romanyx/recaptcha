@@ -2,7 +2,6 @@ package recaptcha
 
 import (
 	"errors"
-	"fmt"
 	"strings"
 	"time"
 )
@@ -51,5 +50,5 @@ func (t *challengeTs) UnmarshalJSON(data []byte) error {
 }
 
 func (t *challengeTs) String() string {
-	return fmt.Sprintf("%s", time.Time(*t))
+	return time.Time(*t).String()
 }
