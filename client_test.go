@@ -5,18 +5,20 @@ import (
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
 	secret     = "very_secret"
 	okResponse = `{
 		"success": true,
-		"challenge_ts": "2013-09-29T18:46:19-0700",
+		"challenge_ts": "2018-07-16T08:25:45Z",
 		"hostname": "http://example.com"
 	}`
 	unsuccessedResponse = `{
 		"success": false,
-		"challenge_ts": "2013-09-29T18:46:19-0700",
+		"challenge_ts": "2018-07-16T08:25:45Z",
 		"hostname": "http://example.com"
 	}`
 	missingInputSecretResponse = `{
@@ -34,7 +36,7 @@ const (
 )
 
 func TestClient_verify(t *testing.T) {
-	tsTime, _ := time.Parse("2006-01-02T15:04:05-0700", "2013-09-29T18:46:19-0700")
+	tsTime, _ := time.Parse("2006-01-02T15:04:05Z", "2018-07-16T08:25:45Z")
 
 	type args struct {
 		gRecaptchaResponse, remoteIP string
@@ -112,7 +114,7 @@ func TestClient_verify(t *testing.T) {
 			},
 			wantErr: true,
 			err:     ErrMissingInputSecret,
-			want:    &Response{ErrorCodes: nil},
+			want:    &Response{ErrorCodes: []string{"missing-input-secret"}},
 		},
 		{
 			name: "invalid input secret response",
@@ -127,7 +129,7 @@ func TestClient_verify(t *testing.T) {
 			},
 			wantErr: true,
 			err:     ErrInvalidInputSecret,
-			want:    &Response{ErrorCodes: nil},
+			want:    &Response{ErrorCodes: []string{"invalid-input-secret"}},
 		},
 	}
 
@@ -150,9 +152,7 @@ func TestClient_verify(t *testing.T) {
 			if tt.wantErr && err != tt.err {
 				t.Errorf("expected error: %s, got: %s", tt.err, err)
 			}
-			if compareAsStrings(got, tt.want) {
-				t.Errorf("expected response to be: %v, got %v", tt.want, got)
-			}
+			assert.Equal(t, tt.want, got)
 		})
 	}
 }

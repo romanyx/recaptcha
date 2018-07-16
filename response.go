@@ -40,15 +40,25 @@ type Response struct {
 type challengeTs time.Time
 
 func (t *challengeTs) UnmarshalJSON(data []byte) error {
-	asString := strings.Trim(string(data), `"`)
-	parsedTime, err := time.Parse("2006-01-02T15:04:05-0700", asString)
-	if err != nil {
-		return err
-	}
+	s := strings.Trim(string(data), `"`)
+
+	parsedTime := parseTime(s)
 	*t = challengeTs(parsedTime)
-	return err
+	return nil
 }
 
 func (t *challengeTs) String() string {
 	return time.Time(*t).String()
+}
+
+func parseTime(s string) time.Time {
+	if parsedTime, err := time.Parse("2006-01-02T15:04:05Z", s); err == nil {
+		return parsedTime
+	}
+
+	if parsedTime, err := time.Parse("2006-01-02T15:04:05-0700", s); err == nil {
+		return parsedTime
+	}
+
+	return time.Now()
 }
