@@ -31,7 +31,7 @@ package main
 import (
 	"fmt"
 
-	import "gopkg.in/romanyx/recaptcha.v1"
+	"gopkg.in/romanyx/recaptcha.v1"
 )
 
 func main() {
